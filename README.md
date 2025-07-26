@@ -146,4 +146,4 @@ hragent/
 
 ## 📬 Contact
 
-For issues, feature requests, or contributions, please open an issue on the GitHub repository or contact [your-email@example.com].
+For issues, feature requests, or contributions, please open an issue on the GitHub repository or contact [mohammedarbazq16@gmail.com].
