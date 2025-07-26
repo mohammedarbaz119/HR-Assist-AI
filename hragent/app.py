@@ -15,13 +15,26 @@ from fastapi import FastAPI,Form,UploadFile, HTTPException,Response
 from fastapi.responses import JSONResponse
 from pathlib import Path
 import uuid
+import os
 
+UPLOAD_DIR = Path("uploads")
+os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+async def save_upload_file(file: UploadFile,filename: str) -> str:
+    file_location = os.path.join(UPLOAD_DIR, filename)
+
+    # Save the file contents
+    with open(file_location, "wb") as f:
+        contents = await file.read()
+        f.write(contents)
+
+    return file_location
 
 llm= build_llm("gemini-2.5-flash")
 
 def router(state:AgentState):
     print("--- ROUTER NODE ---")
-    if state.get("file"):
+    if state.get("file_path"):
         return {"next_action": "parse_resume"}
     
     if state["purpose"] == "general":
@@ -138,19 +151,27 @@ async def chat(message: str = Form(...),thread_id: str | None = Form(None)):
     )
 
 @app.post("/score-resume")
-async def score_resume(file: UploadFile = Form(...), role: str = Form(...)):
+async def score_resume(file: UploadFile, role: str = Form(...), yoe: int = Form(...),job_description: str = Form("")):
     suffix = Path(file.filename).suffix
     if suffix not in ['.txt', '.pdf', '.docx']:
         raise HTTPException(422, detail="Unsupported file type. Please upload a .txt, .pdf, or .docx file.")
 
+    if role is None or yoe is None:
+        raise HTTPException(422, detail="Role and years of experience are required.")
     message = f"score this resume for the role: {role}"
+    filename = str(uuid.uuid4()) + file.filename
+    file_location = await save_upload_file(file, filename=filename)
 
     response = agent.invoke({
         "messages": [HumanMessage(content=message)],
         "purpose": "score",
-        "file": file,
-        "role": role
-    })
+        "file_path": file_location,
+        "file_extension": suffix,
+        "filename": filename,
+        "role": role,
+        "years_of_experience": yoe,
+        "job_description": job_description
+    },config=RunnableConfig(configurable={"thread_id": str(uuid.uuid4())}))
 
     if "error" in response:
         error_message = response.get("messages", [AIMessage("An error occurred.")])[-1].content

@@ -21,8 +21,8 @@ This solution is designed to streamline HR workflows and empower both candidates
 -   **Backend**: **FastAPI** – A high-performance Python web framework for building robust APIs.
 -   **Agent Framework**: **LangGraph** – A declarative state-machine library for building complex, stateful LLM agents.
 -   **LLM & Orchestration**: **LangChain** – The core framework for tool routing, data handling, and LLM integration.
--   **AI Model**: **Gemini 1.5 Flash** – Google's fast and powerful multimodal model for reasoning and analysis.
--   **Search**: **Tavily** (Optional) – For agents that need to access real-time web information.
+-   **AI Model**: **Gemini 2.5 Flash** – Google's fast and powerful multimodal model for reasoning and analysis.
+-   **Search**: **Tavily** – For agents that need to access real-time web information.
 
 ---
 

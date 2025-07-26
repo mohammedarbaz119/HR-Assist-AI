@@ -11,12 +11,12 @@ dotenv.load_dotenv()
 llm = build_llm("gemini-2.5-flash")
 def parse_and_extract_resume(state: AgentState):
     print("--- PARSING RESUME NODE ---")
-    file = state["file"]
+    file = state["file_path"]
     
     if not file:
         return {"error": "No resume file path provided.", "messages": [AIMessage("No resume file was uploaded.")],"next_action": "end"}
 
-    raw_text: str  = read_document_content(file,file_extension=Path(file.filename).suffix)
+    raw_text: str  = read_document_content(file,file_extension=state.get("file_extension", "pdf"), filename=state.get("filename", "resume"))
 
     if raw_text.startswith("Error:"):
         return {"error": raw_text, "messages": [AIMessage(f"Failed to parse resume: {raw_text}")],"next_action": "end"}
