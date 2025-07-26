@@ -85,10 +85,12 @@ The API will be available at `http://localhost:8000`. You can access the auto-ge
 
 Analyzes and scores a resume against a target job role.
 
-| Parameter | Type   | Description                                 |
-| :-------- | :----- | :------------------------------------------ |
-| `file`    | `file` | The resume file (`.pdf`, `.docx`, or `.txt`). |
-| `role`    | `str`  | The target job title (e.g., "Data Scientist").  |
+| Parameter          | Type   | Description                                    |
+| :--------          | :----- | :------------------------------------------    |
+| `file`             | `file` | The resume file (`.pdf`, `.docx`, or `.txt`).  |
+| `role`             | `str`  | The target job title (e.g., "Data Scientist"). |
+| `yoe`              | `str`  | years of experience of candidate               | 
+| `job_description`  | `str`  | the description of the job to compare with     |
 
 **Example Response:**
 
