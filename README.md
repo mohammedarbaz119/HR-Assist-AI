@@ -60,7 +60,7 @@ pip install -r requirements.txt
 
 ### 4\. Configure Environment Variables
 
-Create a `.env` file in the `hragent/` root directory and add your API keys.
+Create a `.env` file in the root directory and add your API keys.
 
 ```env
 GOOGLE_API_KEY="your_google_gemini_api_key"
@@ -72,7 +72,7 @@ TAVILY_API_KEY="your_tavily_api_key"
 Launch the FastAPI server using Uvicorn. The `--reload` flag will automatically restart the server on code changes.
 
 ```bash
-uvicorn hragent:app --reload
+uvicorn hragent.app:app --reload
 ```
 
 The API will be available at `http://localhost:8000`. You can access the auto-generated OpenAPI documentation at `http://localhost:8000/docs`.
