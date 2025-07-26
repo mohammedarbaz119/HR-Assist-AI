@@ -1,4 +1,3 @@
-```markdown
 # 💼 HR Assist AI
 
 **HR Assist AI** is an intelligent, A agent exposed as API powered by FastAPI,using LangGraph, and Google's Gemini models. It serves as a comprehensive Human Resources agent, providing two key functionalities: advanced resume analysis and interactive career guidance.
