@@ -1,4 +1,4 @@
-````markdown
+```markdown
 # 💼 HR Assist AI
 
 **HR Assist AI** is an intelligent, A agent exposed as API powered by FastAPI,using LangGraph, and Google's Gemini models. It serves as a comprehensive Human Resources agent, providing two key functionalities: advanced resume analysis and interactive career guidance.
@@ -36,7 +36,7 @@ Follow these steps to set up and run the project on your local machine.
 ```bash
 git clone [https://github.com/your-username/hr-assist-ai.git](https://github.com/your-username/hr-assist-ai.git)
 cd hragent
-````
+```
 
 ### 2\. Create and Activate a Virtual Environment
 
